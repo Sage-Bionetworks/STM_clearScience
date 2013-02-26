@@ -2,14 +2,26 @@ require(synapseClient)
 require(devtools)
 require(Biobase)
 require(survival)
-require(BCC)
 require(devtools)
 
-# install DreamBox7 package from github
-install_github(repo="DreamBox7", username="weiyi-bitw", ref="master")
-library(DreamBox7)
+# install predictiveModeling from github
+install_github(repo="predictiveModeling", username="Sage-Bionetworks") ## ADD TAG INFORMATION WHEN AVAILABLE
+require(predictiveModeling)
 
-synapseLogin()
+# install BCC package from github
+install_github(repo="BCC", username="Sage-Bionetworks") ## ADD TAG INFORMATION WHEN AVAILABLE
+require(BCC)
+
+# install DreamBox7 package from github
+install_github(repo="DreamBox7", username="weiyi-bitw", ref="master") ## ADD TAG INFORMATION WHEN AVAILABLE
+require(DreamBox7)
+
+# install rGithubClient package from github
+install_github(repo="rGithubClient", username="brian-bot", ref="rGithubClient-0.6")
+require(rGithubClient)
+
+# log in to synapse if credentials not listed in .Rprofile
+# synapseLogin()
 
 # Load metabric data
 metabric = loadEntity('syn1465025')$objects
@@ -28,7 +40,8 @@ intExprEset = loadEntity("syn1449475")$objects$xExprDat
 oslo = list(expr = intExprEset, cnv = intCnvEset, clnc = intClncDat, surv = intSurvObject)
 
 # source model source file
-source_url("https://raw.github.com/weiyi-bitw/BCCModels/master/syn1417992_OSDS.R")
+bccRepo <- getRepo("weiyi-bitw/BCCModels") ## ADD TAG INFORMATION ONCE TAGGED
+sourceRepoFile(bccRepo, "syn1417992_OSDS.R")
 
 # create new model instance
 gdModel = GoldiloxModel$new()
