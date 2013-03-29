@@ -4,7 +4,7 @@ require(rGithubClient)
 analysisRepo <- getRepo("Sage-Bionetworks/STM_clearScience") ## ADD TAG INFORMATION WHEN AVAILABLE
 
 ## SOURCE IN FILE FROM GITHUB WHICH LOADS METABRIC AND OSLO VAL DATA
-sourceRepoFile(analysisRepo, "loadAllData.R")
+sourceRepoFile(analysisRepo, "dataScripts/loadMetabricAndOsloval.R")
 
 ## CREATE A TEMP DIRECTORY TO HOLD FIGS
 figDir <- file.path(tempdir(), "figs")
@@ -14,11 +14,13 @@ dir.create(figDir)
 synFolderId <- "syn1725860"
 
 
-#####
+#################################################
 ## CREATE EACH FIGURE BY SOURCING IN FROM GITHUB
-#####
+#################################################
 
+#####
 ## FIGURE 1
+#####
 sourceRepoFile(analysisRepo, "figureGeneration/createFigure1.R")
 fig1 <- createFigure1()
 
@@ -38,7 +40,9 @@ generatedBy(fig1Ent) <- fig1Activity
 fig1Ent <- storeEntity(fig1Ent)
 
 
+#####
 ## FIGURE 2
+#####
 sourceRepoFile(analysisRepo, "figureGeneration/createFigure2.R")
 fig2 <- createFigure2()
 
@@ -59,7 +63,9 @@ generatedBy(fig2Ent) <- fig2Activity
 fig2Ent <- storeEntity(fig2Ent)
 
 
+#####
 ## FIGURE 3
+#####
 sourceRepoFile(analysisRepo, "figureGeneration/createFigure3.R")
 fig3 <- createFigure3()
 
@@ -77,7 +83,9 @@ generatedBy(fig3Ent) <- fig3Activity
 fig3Ent <- storeEntity(fig3Ent)
 
 
+#####
 ## FIGURE 4
+#####
 sourceRepoFile(analysisRepo, "figureGeneration/createFigure4.R")
 fig4 <- createFigure4()
 
@@ -95,14 +103,15 @@ fig4Ent <- addFile(fig4Ent, fig4)
 generatedBy(fig4Ent) <- fig4Activity
 fig4Ent <- storeEntity(fig4Ent)
 
+#####
 ## FIGURE 5
+#####
 sourceRepoFile(analysisRepo, "figureGeneration/createFigure5.R")
 fig5 <- createFigure5()
 
 fig5Activity <- Activity(name="STM 5",
                          used=list(
-                           list(entity=mbExprEnt, wasExecuted=F),
-                           list(entity=ovExprEnt, wasExecuted=F)
+                           list(entity=mbExprEnt, wasExecuted=F)
                          ))
 fig5Activity <- storeEntity(fig5Activity)
 
