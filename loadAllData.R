@@ -37,7 +37,9 @@ mbClinImputed <- lazyImputeDFClncOslo(mbClin)
 mbClinImputed <- expandClncOslo(mbClinImputed)
 
 mbMeta <- CreateMetageneSpace(mbExpr, attractome=attractome.minimalist, map=map)$metaSpace
+mbMetaScaled <- mbMeta - apply(mbMeta, 1, median)
 
+mbAll <- cbind.data.frame(mbClin, as.data.frame(t(mbMetaScaled)))
 
 
 #####
@@ -60,4 +62,6 @@ ovClinImputed <- lazyImputeDFClncOslo(ovClin)
 ovClinImputed <- expandClncOslo(ovClinImputed)
 
 ovMeta <- CreateMetageneSpace(ovExpr, attractome=attractome.minimalist, map=map)$metaSpace
+ovMetaScaled <- ovMeta - apply(ovMeta, 1, median)
 
+ovAll <- cbind.data.frame(ovClin, as.data.frame(t(ovMetaScaled)))
