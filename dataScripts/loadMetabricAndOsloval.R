@@ -1,9 +1,8 @@
 require(synapseClient)
-require(devtools)
 require(Biobase)
 require(survival)
+require(predictiveModeling)
 require(BCC)
-require(ggplot2)
 require(DreamBox7)
 
 data(map)

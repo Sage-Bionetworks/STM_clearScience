@@ -1,5 +1,6 @@
 require(synapseClient)
 require(rGithubClient)
+require(survival)
 
 analysisRepo <- getRepo("Sage-Bionetworks/STM_clearScience") ## ADD TAG INFORMATION WHEN AVAILABLE
 
