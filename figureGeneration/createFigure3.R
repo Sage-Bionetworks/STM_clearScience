@@ -6,8 +6,8 @@
 
 createFigure3 <- function(){
   
-  fig3 <- file.path(figDir, "fig3.tiff")
-  tiff(file = fig3, width = 3.5, height = 3.5, units = "in", res = 300, compression="lzw")
+  fig3 <- file.path(figDir, "fig3.png")
+  png(file = fig3, width = 3.5, height = 3.5, units = "in", res = 300)
   par(
     mar = c(2,2,2,1),       #plot margin
     mgp = c(1, 0.4, 0)     #axis and label margin

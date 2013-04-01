@@ -4,9 +4,9 @@
 
 createFigure2 <- function(){
   
-  fig2 <- file.path(figDir, "fig2.tiff")
+  fig2 <- file.path(figDir, "fig2.png")
   
-  tiff(file = fig2, width = 7.3, height = 3.5, units = "in", res = 300, compression="lzw")
+  png(file = fig2, width = 7.3, height = 3.5, units = "in", res = 300)
   par(
     mar = c(2,2,2,1),       #plot margin
     mgp = c(1, 0.4, 0),     #axis and label margin
