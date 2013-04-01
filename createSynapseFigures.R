@@ -12,12 +12,12 @@ figDir <- file.path(tempdir(), "figs")
 dir.create(figDir)
 
 ## SYNAPSE FOLDER TO HOLD FIGS
-synFolderId <- "syn1725860"
+synFigFolderId <- "syn1725860"
+synTableFolderId <- "syn1729476"
 
-
-#################################################
-## CREATE EACH FIGURE BY SOURCING IN FROM GITHUB
-#################################################
+###########################################################
+## CREATE EACH FIGURE AND TABLE BY SOURCING IN FROM GITHUB
+###########################################################
 
 #####
 ## FIGURE 1
@@ -35,7 +35,7 @@ fig1Activity <- Activity(name="STM 1",
                          ))
 fig1Activity <- storeEntity(fig1Activity)
 
-fig1Ent <- Data(name=basename(fig1), parentId=synFolderId)
+fig1Ent <- Data(name=basename(fig1), parentId=synFigFolderId)
 fig1Ent <- addFile(fig1Ent, fig1)
 generatedBy(fig1Ent) <- fig1Activity
 fig1Ent <- storeEntity(fig1Ent)
@@ -58,7 +58,7 @@ fig2Activity <- Activity(name="STM 2",
                          ))
 fig2Activity <- storeEntity(fig2Activity)
 
-fig2Ent <- Data(name=basename(fig2), parentId=synFolderId)
+fig2Ent <- Data(name=basename(fig2), parentId=synFigFolderId)
 fig2Ent <- addFile(fig2Ent, fig2)
 generatedBy(fig2Ent) <- fig2Activity
 fig2Ent <- storeEntity(fig2Ent)
@@ -78,7 +78,7 @@ fig3Activity <- Activity(name="STM 3",
                          ))
 fig3Activity <- storeEntity(fig3Activity)
 
-fig3Ent <- Data(name=basename(fig3), parentId=synFolderId)
+fig3Ent <- Data(name=basename(fig3), parentId=synFigFolderId)
 fig3Ent <- addFile(fig3Ent, fig3)
 generatedBy(fig3Ent) <- fig3Activity
 fig3Ent <- storeEntity(fig3Ent)
@@ -99,7 +99,7 @@ fig4Activity <- Activity(name="STM 4",
                          ))
 fig4Activity <- storeEntity(fig4Activity)
 
-fig4Ent <- Data(name=basename(fig4), parentId=synFolderId)
+fig4Ent <- Data(name=basename(fig4), parentId=synFigFolderId)
 fig4Ent <- addFile(fig4Ent, fig4)
 generatedBy(fig4Ent) <- fig4Activity
 fig4Ent <- storeEntity(fig4Ent)
@@ -116,9 +116,13 @@ fig5Activity <- Activity(name="STM 5",
                          ))
 fig5Activity <- storeEntity(fig5Activity)
 
-fig5Ent <- Data(name=basename(fig5), parentId=synFolderId)
+fig5Ent <- Data(name=basename(fig5), parentId=synFigFolderId)
 fig5Ent <- addFile(fig5Ent, fig5)
 generatedBy(fig5Ent) <- fig5Activity
 fig5Ent <- storeEntity(fig5Ent)
 
+#####
+## TABLE 1
+#####
+# sourceRepoFile(analysisRepo, "tableGeneration/createTable1.R")
 
