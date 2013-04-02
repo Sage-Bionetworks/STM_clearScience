@@ -13,7 +13,7 @@ createFigure3 <- function(){
     mgp = c(1, 0.4, 0)     #axis and label margin
   )
   
-  ##lymphNode >3 Samples
+  ##lymphNode >4 Samples
   idx.erP <- (mbClinImputed[,"lymph_nodes_positive"] > 4 & mbClin$ER.Expr=="+")
   metafeature<-mbMeta["ls",idx.erP]
   metafeature <- metafeature - median(metafeature)
@@ -30,7 +30,7 @@ createFigure3 <- function(){
   pval.erP<-summary(coxph(Surv(time, status) ~ metafeature, ))$logtest[3]
   
   
-  #Positive lymph node number >3 Samples
+  #Positive lymph node number >4 Samples
   plot(
     fit.erP,
     col = c("18","20"),     #Red, Blue
