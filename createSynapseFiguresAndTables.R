@@ -7,7 +7,7 @@ analysisRepo <- getRepo("Sage-Bionetworks/STM_clearScience") ## ADD TAG INFORMAT
 ## SOURCE IN FILE FROM GITHUB WHICH LOADS METABRIC AND OSLO VAL DATA
 sourceRepoFile(analysisRepo, "dataScripts/loadMetabricAndOsloval.R")
 
-## CREATE A TEMP DIRECTORY TO HOLD FIGS
+## CREATE A TEMP DIRECTORY TO HOLD FIGS AND TABLES
 figDir <- file.path(tempdir(), "figs")
 dir.create(figDir)
 
@@ -25,7 +25,7 @@ synTableFolderId <- "syn1729476"
 sourceRepoFile(analysisRepo, "figureGeneration/createFigure1.R")
 fig1 <- createFigure1()
 
-fig1Activity <- Activity(name="STM 1",
+fig1Activity <- Activity(name="STM Figure 1",
                          used=list(
 #                            list(entity=githubLink, wasExecuted=T),
                            list(entity=mbExprEnt, wasExecuted=F),
@@ -47,7 +47,7 @@ fig1Ent <- storeEntity(fig1Ent)
 sourceRepoFile(analysisRepo, "figureGeneration/createFigure2.R")
 fig2 <- createFigure2()
 
-fig2Activity <- Activity(name="STM 2",
+fig2Activity <- Activity(name="STM Figure 2",
                          used=list(
                            list(entity=mbClinEnt, wasExecuted=F),
                            list(entity=mbExprEnt, wasExecuted=F),
@@ -70,7 +70,7 @@ fig2Ent <- storeEntity(fig2Ent)
 sourceRepoFile(analysisRepo, "figureGeneration/createFigure3.R")
 fig3 <- createFigure3()
 
-fig3Activity <- Activity(name="STM 3",
+fig3Activity <- Activity(name="STM Figure 3",
                          used=list(
                            list(entity=mbClinEnt, wasExecuted=F),
                            list(entity=mbExprEnt, wasExecuted=F),
@@ -90,7 +90,7 @@ fig3Ent <- storeEntity(fig3Ent)
 sourceRepoFile(analysisRepo, "figureGeneration/createFigure4.R")
 fig4 <- createFigure4()
 
-fig4Activity <- Activity(name="STM 4",
+fig4Activity <- Activity(name="STM Figure 4",
                          used=list(
                            list(entity=mbExprEnt, wasExecuted=F),
                            list(entity=mbSurvEnt, wasExecuted=F),
@@ -110,7 +110,7 @@ fig4Ent <- storeEntity(fig4Ent)
 sourceRepoFile(analysisRepo, "figureGeneration/createFigure5.R")
 fig5 <- createFigure5()
 
-fig5Activity <- Activity(name="STM 5",
+fig5Activity <- Activity(name="STM Figure 5",
                          used=list(
                            list(entity=mbExprEnt, wasExecuted=F)
                          ))
@@ -124,5 +124,25 @@ fig5Ent <- storeEntity(fig5Ent)
 #####
 ## TABLE 1
 #####
-# sourceRepoFile(analysisRepo, "tableGeneration/createTable1.R")
+sourceRepoFile(analysisRepo, "tableGeneration/createTable1.R")
+table1 <- createTable1()
+
+table1Activity <- Activity(name="STM Table 1",
+                           used=list(
+                             list(entity=mbDssEnt, wasExecuted=F),
+                             list(entity=mbExprEnt, wasExecuted=F)
+                           ))
+table1Activity <- storeEntity(table1Activity)
+
+table1aEnt <- Data(name=basename(table1$inducing), parentId=synTableFolderId)
+table1aEnt <- addFile(table1aEnt, table1$inducing)
+generatedBy(table1aEnt) <- table1Activity
+table1aEnt <- storeEntity(table1aEnt)
+table1Activity <- generatedBy(table1aEnt)
+
+table1bEnt <- Data(name=basename(table1$protective), parentId=synTableFolderId)
+table1bEnt <- addFile(table1bEnt, table1$protective)
+generatedBy(table1aEnt) <- table1Activity
+table1bEnt <- storeEntity(table1bEnt)
+table1Activity <- generatedBy(table1bEnt)
 
