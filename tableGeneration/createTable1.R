@@ -16,9 +16,9 @@ createTable1 <- function(){
   inducing <- inducing[1:50, ]
   
   geneCCI <- sort(geneCCI)
-  protective <- data.frame("Probe Set ID" = names(geneCCI)[1:50], 
-                           "Gene Symbol" = map[names(geneCCI)[1:50], "Gene.Symbol"], 
-                           "Concordance Index" = geneCCI[1:50], check.names=F)
+  protective <- data.frame("Probe Set ID" = names(geneCCI)[1:100], 
+                           "Gene Symbol" = map[names(geneCCI)[1:100], "Gene.Symbol"], 
+                           "Concordance Index" = geneCCI[1:100], check.names=F)
   protective <- protective[!duplicated(protective$"Gene Symbol"), ]
   protective <- protective[1:50, ]
   
