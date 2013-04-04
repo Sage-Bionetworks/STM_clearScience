@@ -126,7 +126,7 @@ table1Activity <- generatedBy(table1aEnt)
 
 table1bEnt <- Data(name=basename(table1$protective), parentId=synTableFolderId)
 table1bEnt <- addFile(table1bEnt, table1$protective)
-generatedBy(table1aEnt) <- table1Activity
+generatedBy(table1bEnt) <- table1Activity
 table1bEnt <- storeEntity(table1bEnt)
 table1Activity <- generatedBy(table1bEnt)
 
