@@ -7,6 +7,7 @@ source("http://depot.sagebase.org/CRAN.R")
 pkgInstall("synapseClient")
 
 require(devtools)
+install_github("devtools", ref="devtools-1.1") ## GET UPDATED VERSION
 install_github("rGithubClient", "brian-bot", ref="rGithubClient-0.7")
 install_github("cafr", "weiyi-bitw", ref="master") ## ADD TAG INFORMATION
 install_github("predictiveModeling", "Sage-Bionetworks", ref="master") ## ADD TAG INFORMATION
