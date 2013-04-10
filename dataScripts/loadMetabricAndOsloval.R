@@ -31,6 +31,7 @@ mbDss <- mbDssEnt$objects$dssSurv
 
 ## MAKE SURE SAMPLES ARE LINED UP ACROSS DATA OBJECTS
 stopifnot( all(rownames(mbSurv) == colnames(mbExpr)) )
+stopifnot( all(rownames(mbDss) == colnames(mbExpr)) )
 stopifnot( all(rownames(mbClin) == colnames(mbExpr)) )
 
 ## IMPUTE MISSING CLINICAL FEATURES
