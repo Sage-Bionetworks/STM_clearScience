@@ -27,6 +27,7 @@ mbClin <- mbClinEnt$objects$metabricClinicalTable
 mbSurvEnt <- loadEntity("syn1710277")
 mbSurv <- mbSurvEnt$objects$metabricSurvData
 mbDssEnt <- loadEntity("syn1730400")
+mbDss <- mbDssEnt$objects$dssSurv
 
 ## MAKE SURE SAMPLES ARE LINED UP ACROSS DATA OBJECTS
 stopifnot( all(rownames(mbSurv) == colnames(mbExpr)) )
