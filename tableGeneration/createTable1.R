@@ -22,8 +22,8 @@ createTable1 <- function(){
   protective <- protective[!duplicated(protective$"Gene Symbol"), ]
   protective <- protective[1:50, ]
   
-  write.table(inducing, file=table1$inducing, row.names=F, col.names=T, quote=F)
-  write.table(protective, file=table1$protective, row.names=F, col.names=T, quote=F)
+  write.table(inducing, file=table1$inducing, row.names=F, col.names=T, sep="\t", quote=F)
+  write.table(protective, file=table1$protective, row.names=F, col.names=T, sep="\t", quote=F)
   
   return(table1)
 }
