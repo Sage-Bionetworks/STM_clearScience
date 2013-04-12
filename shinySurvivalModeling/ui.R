@@ -7,7 +7,7 @@ shinyUI(pageWithSidebar(
               "Attractor Metagenes in METABRIC and Oslo Validation Datasets"),
   
   sidebarPanel(
-    h3("Build your own model"),
+    h4("Build your own model"),
     
     helpText("Add or remove individual metagenes or clinical feautures and fit your own Cox proportional hazards model. ",
              "Models are trained in the full METABRIC cohort and predictions made in Oslo Validation based on that model."),

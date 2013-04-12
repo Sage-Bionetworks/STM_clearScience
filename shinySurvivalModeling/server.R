@@ -48,8 +48,7 @@ awesome <- ggplot(finalDF) +
   labs(fill="Group") + 
   geom_vline(xintercept=max(finalDF$cci), colour="black", size=1.5) + 
   theme(axis.title=element_text(size=18), 
-        axis.text=element_text(size=18), 
-        title=element_text(size=32))
+        axis.text=element_text(size=12))
 
 
 # Define server logic required for interaction
