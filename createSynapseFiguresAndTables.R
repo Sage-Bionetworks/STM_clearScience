@@ -10,8 +10,14 @@ analysisRepo <- getRepo("Sage-Bionetworks/STM_clearScience") ## ADD TAG INFORMAT
 
 ## SOURCE IN FILE FROM GITHUB WHICH LOADS METABRIC AND OSLO VAL DATA
 sourceRepoFile(analysisRepo, "dataScripts/loadMetabricAndOsloval.R")
+challengeDataCode <- getPermlink(analysisRepo, "dataScripts/loadMetabricAndOsloval.R")
+
 sourceRepoFile(analysisRepo, "dataScripts/loadOslovalPredictions.R")
+leaderboardDataCode <- getPermlink(analysisRepo, "dataScripts/loadOslovalPredictions.R")
+
 sourceRepoFile(analysisRepo, "dataScripts/loadNkiAndLoi.R")
+suppDataCode <- getPermlink(analysisRepo, "dataScripts/loadNkiAndLoi.R")
+
 
 ## CREATE A TEMP DIRECTORY TO HOLD FIGS AND TABLES
 figDir <- file.path(tempdir(), "figs")
@@ -29,11 +35,13 @@ synTableFolderId <- "syn1729476"
 ## FIGURE 1
 #####
 sourceRepoFile(analysisRepo, "figureGeneration/createFigure1.R")
+fig1code <- getPermlink(analysisRepo, "figureGeneration/createFigure1.R")
 fig1 <- createFigure1()
 
 fig1Activity <- Activity(name="STM Figure 1",
                          used=list(
-#                            list(entity=githubLink, wasExecuted=T),
+                           list(url=challengeDataCode, name=basename(challengeDataCode), wasExecuted=T),
+                           list(url=fig1code, name=basename(fig1code), wasExecuted=T),
                            list(entity=mbExprEnt, wasExecuted=F),
                            list(entity=mbDssEnt, wasExecuted=F),
                            list(entity=ovExprEnt, wasExecuted=F),
@@ -50,10 +58,13 @@ fig1File <- storeEntity(fig1File)
 ## FIGURE 2
 #####
 sourceRepoFile(analysisRepo, "figureGeneration/createFigure2.R")
+fig2code <- getPermlink(analysisRepo, "figureGeneration/createFigure2.R")
 fig2 <- createFigure2()
 
 fig2Activity <- Activity(name="STM Figure 2",
                          used=list(
+                           list(url=challengeDataCode, name=basename(challengeDataCode), wasExecuted=T),
+                           list(url=fig2code, name=basename(fig2code), wasExecuted=T),
                            list(entity=mbClinEnt, wasExecuted=F),
                            list(entity=mbExprEnt, wasExecuted=F),
                            list(entity=mbDssEnt, wasExecuted=F),
@@ -72,10 +83,13 @@ fig2File <- storeEntity(fig2File)
 ## FIGURE 3
 #####
 sourceRepoFile(analysisRepo, "figureGeneration/createFigure3.R")
+fig3code <- getPermlink(analysisRepo, "figureGeneration/createFigure3.R")
 fig3 <- createFigure3()
 
 fig3Activity <- Activity(name="STM Figure 3",
                          used=list(
+                           list(url=challengeDataCode, name=basename(challengeDataCode), wasExecuted=T),
+                           list(url=fig3code, name=basename(fig3code), wasExecuted=T),
                            list(entity=mbExprEnt, wasExecuted=F),
                            list(entity=mbDssEnt, wasExecuted=F),
                            list(entity=ovExprEnt, wasExecuted=F),
@@ -92,10 +106,14 @@ fig3File <- storeEntity(fig3File)
 ## FIGURE 4
 #####
 sourceRepoFile(analysisRepo, "figureGeneration/createFigure4.R")
+fig4code <- getPermlink(analysisRepo, "figureGeneration/createFigure4.R")
 fig4 <- createFigure4()
 
 fig4Activity <- Activity(name="STM Figure 4",
                          used=list(
+                           list(url=challengeDataCode, name=basename(challengeDataCode), wasExecuted=T),
+                           list(url=leaderboardDataCode, name=basename(leaderboardDataCode), wasExecuted=T),
+                           list(url=fig4code, name=basename(fig4code), wasExecuted=T),
                            list(entity=oslovalResEnt, wasExecuted=F),
                            list(entity=ovSurvEnt, wasExecuted=F)
                          ))
@@ -110,10 +128,13 @@ fig4File <- storeEntity(fig4File)
 ## TABLE 1
 #####
 sourceRepoFile(analysisRepo, "tableGeneration/createTable1.R")
+table1code <- getPermlink(analysisRepo, "tableGeneration/createTable1.R")
 table1 <- createTable1()
 
 table1Activity <- Activity(name="STM Table 1",
                            used=list(
+                             list(url=challengeDataCode, name=basename(challengeDataCode), wasExecuted=T),
+                             list(url=table1code, name=basename(table1code), wasExecuted=T),
                              list(entity=mbDssEnt, wasExecuted=F),
                              list(entity=mbExprEnt, wasExecuted=F)
                            ))
@@ -127,17 +148,20 @@ table1Activity <- generatedBy(table1aFile)
 table1bFile <- File(table1$protective, synapseStore=TRUE, parentId=synTableFolderId)
 generatedBy(table1bFile) <- table1Activity
 table1bFile <- storeEntity(table1bFile)
-table1Activity <- generatedBy(table1bFile)
 
 
 #####
 ## TABLE 2
 #####
 sourceRepoFile(analysisRepo, "tableGeneration/createTable2.R")
+table2code <- getPermlink(analysisRepo, "tableGeneration/createTable2.R")
 table2 <- createTable2()
 
 table2Activity <- Activity(name="STM Table 2",
                            used=list(
+                             list(url=challengeDataCode, name=basename(challengeDataCode), wasExecuted=T),
+                             list(url=suppDataCode, name=basename(suppDataCode), wasExecuted=T),
+                             list(url=table2code, name=basename(table2code), wasExecuted=T),
                              list(entity=sigData, wasExecuted=F),
                              list(entity=nkiData, wasExecuted=F),
                              list(entity=loiData, wasExecuted=F),
@@ -152,5 +176,4 @@ table2Activity <- storeEntity(table2Activity)
 table2File <- File(table2, synapseStore=TRUE, parentId=synTableFolderId)
 generatedBy(table2File) <- table2Activity
 table2File <- storeEntity(table2File)
-table2Activity <- generatedBy(table2File)
 
